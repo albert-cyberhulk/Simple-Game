@@ -52,7 +52,7 @@ describe('MainCtrl', function () {
     expect(errorCallback).not.toHaveBeenCalled();
   });
 
-  it('Checks for $scope.gridData to be filled with data',  function() { console.log(MockHttpResponseWrapper.getMockDataColours());
+  it('Checks for $scope.gridData to be filled with data',  function() {
      $httpBackend.expectGET('/api/grid').respond(200, [MockHttpResponseWrapper.getMockDataColours()]);
      promise = scope.getGridData();
      $httpBackend.flush();
@@ -63,24 +63,3 @@ describe('MainCtrl', function () {
   });
 
 }); // END OF SPECS
-
-/**
- * @namespace ServicesTest
- * @returns {undefined}
- */
-describe('AppServices Test ', function(){
-   beforeEach(function () {
-     module('AppServices');
-   });
-
-   it('Should check if Grid service is defined', inject(function(Grid){
-     expect(Grid).not.toBeNull();
-   }));
-
-   /*it('Should correctly map and reduce topics', inject(function(Stats){
-      var words = Stats.getStats(specHelper.specData);
-      var word = words[0];
-      expect(word.id).toEqual('1751295897__Berlin');
-   }));*/
-
-});
