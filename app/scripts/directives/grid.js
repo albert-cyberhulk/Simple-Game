@@ -18,14 +18,14 @@ app.directives.directive("grid", ['$log', '$compile',
   return {
       restrict: "AE",
       replace: true,
-      scope: {
-        tag: "@"
-      },
-      link: function(scope, element, attrs) {
-        console.log(scope.tag);
-        var tag = "<h1>Grid loaded</h1>";
-        element.html(tag);
-        $compile(element.contents())(scope);
+      compile: function(cElem, cAttrs) {
+        //linking function
+        return function(lscope, lElem, lAttrs) {
+          lscope.$watch("gridData" , function(n,o){ 
+            lElem.html(JSON.stringify(lscope.gridData));
+            $compile(lElem.contents())(lscope);
+          });
+        }
       }
-  };
+  }
 }]);
