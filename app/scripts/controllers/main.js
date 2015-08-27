@@ -18,7 +18,6 @@ app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
    $scope.getGridData = function() {
      Grid.getDataArray().then(function(data) {
        $scope.gridData = data;
-       console.log($scope.gridData);
      });
    };
 

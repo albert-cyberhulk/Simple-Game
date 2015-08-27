@@ -13,19 +13,13 @@
  * @param {Object} $log
  * @param {Object} $compile
  */
-app.directives.directive("grid", ['$log', '$compile',
-  function($log, $compile) {
+app.directives.directive("grid", [
+  function() {
+
   return {
-      restrict: "AE",
+      restrict: 'AE',
       replace: true,
-      compile: function(cElem, cAttrs) {
-        //linking function
-        return function(lscope, lElem, lAttrs) {
-          lscope.$watch("gridData" , function(n,o){
-            lElem.html(JSON.stringify(lscope.gridData));
-            $compile(lElem.contents())(lscope);
-          });
-        }
-      }
-  }
+      templateUrl: 'views/grid.html'
+  };
+
 }]);
