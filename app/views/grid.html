@@ -1,0 +1,6 @@
+<div id="gridDirectiveContainer">
+  <div data-ng-repeat="row in gridData track by $index">
+    <div data-ng-repeat="cell in row track by $index" ng-class="cell"></div>
+  </div>
+
+</div>

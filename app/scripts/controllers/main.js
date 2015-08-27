@@ -2,7 +2,7 @@
 /**
  * @file main.js
  * controller file that handles services -> model -> view control
- * @author Albert Stepanyan
+ * @author Albert Cyberhulk
  * @date 27.08.2014
  */
 
@@ -18,7 +18,6 @@ app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
    $scope.getGridData = function() {
      Grid.getDataArray().then(function(data) {
        $scope.gridData = data;
-       console.log(data);
      });
    };
 
