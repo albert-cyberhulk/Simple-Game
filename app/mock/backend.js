@@ -24,8 +24,8 @@ MockBackend.serve = function ($httpBackend) {
   //Ignores the static file requests
   $httpBackend.whenGET(/.*\.(html|js|css)$/i).passThrough();
   //Request for someurl
-  $httpBackend.whenGET('/topics').respond(function () {
-    return [200, window.getHttpBackendMockData()];
+  $httpBackend.whenGET('/api/grid').respond(function () {
+    return [200, window.MockHttpResponseWrapper.getMockData()];
   });
 };
 

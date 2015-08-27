@@ -38,6 +38,8 @@ in CLI instead of "grunt build", write "grunt build"
 
 You will see a /dist folder in project root folder
 
+Open index.html and remove reference to mock.js file
+
 Run index.html of the dist folder from any webserver you wish, e.g Apache, Node Http-Server or CLI Python server
 
 ===========
