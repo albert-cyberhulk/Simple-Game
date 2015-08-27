@@ -86,7 +86,7 @@
      Grid.flood = function flood(grid, color) {
        var size = grid.length;
        if (grid[0][0].color == color)
-         return grid;
+         return;
 
        grid[0][0].color = color;
 
