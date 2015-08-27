@@ -23,7 +23,7 @@ var MockHttpResponseWrapper = {
     for(var i=0;i<size;i++){
       grid[i] = [];
       for(var j=0; j < size; j++){
-        grid[i][j] = this.MockData.colors[Math.floor(Math.random() * maxRand)];
+        grid[i][j] = {color:this.MockData.colors[Math.floor(Math.random() * maxRand)], isLinked:false};
       }
     }
     return grid;
