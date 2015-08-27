@@ -1,7 +1,7 @@
-Angular Boilerplate
+Angular Game Demo
 ==========
 
-Angular Boilerplate for easy project bootstrap
+Demo Game application based on AngularJS
 ==========
 
 In order to run the development version:
