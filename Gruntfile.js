@@ -29,11 +29,11 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all']
+        tasks: []
       },
       jsTest: {
         files: ['test/spec/{,**/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['karma']
       },
       less: {
         files: [
@@ -287,8 +287,8 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'less',
-        'copy:styles',
-        'newer:jshint'
+        'copy:styles'
+        //'newer:jshint'
       ],
       test: [
         'less',
