@@ -18,7 +18,6 @@ app.directives.directive("grid", [
 
   return {
       restrict: 'AE',
-      replace: true,
       templateUrl: 'views/grid.html'
   };
 

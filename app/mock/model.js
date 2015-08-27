@@ -17,8 +17,20 @@ window.MockHttpResponseWrapper = {
     colors: ['red', 'orange', 'yellow', 'green', 'blue', 'violet'],
   },
 
+  buildGrid: function(size) {
+    var grid = [];
+    var maxRand = this.MockData.colors.length;
+    for(var i=0;i<size;i++){
+      grid[i] = [];
+      for(var j=0; j < size; j++){
+        grid[i][j] = this.MockData.colors[Math.floor(Math.random() * maxRand)];
+      }
+    }
+    return grid;
+  },
+
   getMockDataColours: function() {
-    return this.MockData.colors;
+    return this.buildGrid(10);
   },
 
   getMockDataByID: function() {
