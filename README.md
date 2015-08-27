@@ -14,7 +14,7 @@ Install globally grunt CLI: "npm install grunt-cli -g"
 
 Install globally bower packaging: "npm install bower -g"
 
-Enter repository: cd Word-Cloud
+Enter repository: cd Angular-Demo
 
 Run "npm install"
 
