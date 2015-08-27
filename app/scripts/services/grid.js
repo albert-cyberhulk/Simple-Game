@@ -34,17 +34,20 @@
      };
 
      Grid.pickBestColor = function(grid, colors){
-       var choice = null, weight = 0, gridClone=null, currentColor = grid[0][0];
+       var choice = null, weight = 0, gridClone=null, currentColor = null;
        for(var i = 0; i<colors.length; i++){
-         if(colors[i] == currentColor){
+         if(colors[i] == currentColor || currentColor == grid[0][0].color){
            continue;
          }
-         gridClone = angular.copy(grid);
+         gridClone = this.flood;
          this.flood(gridClone, colors[i]);
-         if(weight < this.getConnectedCount(gridClone)){
+         var curIterator = this.getConnectedCount(gridClone);
+         if(weight <= curIterator) {
+           weight = curIterator;
            choice = colors[i];
          }
        }
+       console.log(choice);
        return choice;
      };
 
@@ -101,6 +104,7 @@
      };
 
      Grid.solved = function(grid) {
+       return true;
        var size = grid.length;
        var firstColor = grid[0][0].color;
        for (var i = 0; i < size; i ++) {
@@ -125,8 +129,12 @@
 
      Grid.solve = function(grid){
        var colors = Config.Colors, color = null, solution = [];
+       color = this.pickBestColor(grid, colors);
+       console.log(color);
+       return;
        while(!this.solved(grid)){
          color = this.pickBestColor(grid, colors);
+         console.log(color);
          grid = this.flood(grid, color);
          solution.push(color);
        }
