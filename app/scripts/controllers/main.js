@@ -24,7 +24,7 @@ app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log',
      $scope.getGridData().then(function(data) {
        $scope.gridData = data;
        $timeout(function() {
-         Grid.solve($scope.gridData);
+         alert(JSON.strigify(Grid.solve($scope.gridData)));
        }, 1000);
      });
    };
