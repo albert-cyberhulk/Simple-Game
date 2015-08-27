@@ -36,8 +36,11 @@ describe('MainCtrl', function () {
    });
 
   it("Should expect MainController to be initialized", function() {
-    console.log(MockHttpResponseWrapper);
     expect(controller).toBeDefined();
+  });
+
+  it("Should expect $scope.gridData to be an empty array at startup", function() {
+    expect(scope.topics.length).toEqual(0);
   });
 
 }); // END OF SPECS
