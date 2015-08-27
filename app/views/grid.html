@@ -1,6 +1,7 @@
 <div id="gridDirectiveContainer">
-  <span data-ng-repeat="row in gridData track by $index">
-    <span data-ng-repeat="cell in row track by $index" ng-class="cell"></span>
-  </span>
-
+	<span data-ng-repeat="row in gridData track by $index">
+		<span data-ng-repeat="cell in row track by $index" ng-class="cell.color" ng-click="flood(cell.color)"></span>
+	</span>
 </div>
+
+Won: {{won}}
