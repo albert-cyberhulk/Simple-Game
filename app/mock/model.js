@@ -13,10 +13,12 @@
  */
 window.MockHttpResponseWrapper = {
 
-  MockData: {},
+  MockData: {
+    colors: ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
+  },
 
   getMockData: function() {
-    return this.MockData;
+    return this.MockData.colors;
   },
 
   getMockDataByID: function() {
