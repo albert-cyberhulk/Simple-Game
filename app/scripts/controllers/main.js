@@ -15,7 +15,7 @@ app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log',
    };
 
    $scope.solve = function() {
-     Grid.solve($scope.gridData);
+     $scope.solution = Grid.solve($scope.gridData);
    };
 
    /**
