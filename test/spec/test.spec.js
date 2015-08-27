@@ -40,7 +40,27 @@ describe('MainCtrl', function () {
   });
 
   it("Should expect $scope.gridData to be an empty array at startup", function() {
-    expect(scope.topics.length).toEqual(0);
+    expect(scope.gridData.length).toEqual(0);
   });
+
+  it('Returns http requests successfully and resolves the promise', function () {
+    $httpBackend.expectGET('/api/grid').respond(200, [MockHttpResponseWrapper.getMockDataColours()]);
+    promise = scope.getGridData();
+    promise.then(successCallback, errorCallback);
+    $httpBackend.flush();
+    expect(successCallback).toHaveBeenCalled();
+    expect(errorCallback).not.toHaveBeenCalled();
+  });
+
+  it('Checks for $scope.gridData to be filled with data',  function() { console.log(MockHttpResponseWrapper.getMockDataColours());
+     $httpBackend.expectGET('/api/grid').respond(200, [MockHttpResponseWrapper.getMockDataColours()]);
+     promise = scope.getGridData();
+     $httpBackend.flush();
+     promise.then(function(data) {
+       scope.gridData = data;
+       expect(scope.gridData.length).toBeGreaterThan(0);
+     });
+  });
+
 
 }); // END OF SPECS

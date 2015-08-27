@@ -16,7 +16,11 @@ app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
     * gets the data from Backend
     */
    $scope.getGridData = function() {
-     Grid.getDataArray().then(function(data) {
+     return Grid.getDataArray();
+   };
+
+   $scope.processData = function() {
+     $scope.getGridData().then(function(data) {
        $scope.gridData = data;
      });
    };
@@ -25,7 +29,7 @@ app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
     * @method ._init_ bootstraps controller
     */
    $scope._init_ = function() {
-     $scope.getGridData();
+     $scope.processData();
    };
 
 }]);

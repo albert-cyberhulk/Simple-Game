@@ -25,7 +25,7 @@ MockBackend.serve = function ($httpBackend) {
   $httpBackend.whenGET(/.*\.(html|js|css)$/i).passThrough();
   //Request for someurl
   $httpBackend.whenGET('/api/grid').respond(function () {
-    return [200, window.MockHttpResponseWrapper.getMockDataColours()];
+    return [200, MockHttpResponseWrapper.getMockDataColours()];
   });
 };
 
