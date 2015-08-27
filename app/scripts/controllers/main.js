@@ -6,10 +6,11 @@
  * @date 27.08.2014
  */
 
-app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
-   function ($scope, Request, $log, Grid) {
+app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log', 'Grid',
+   function ($scope, $timeout, Request, $log, Grid) {
 
    $scope.gridData = [];
+   $scope.flood = Grid.flood;
 
    /**
     * @method getGridData
@@ -22,6 +23,9 @@ app.controllers.controller('MainCtrl', ['$scope', 'Request', '$log', 'Grid',
    $scope.processData = function() {
      $scope.getGridData().then(function(data) {
        $scope.gridData = data;
+       $timeout(function() {
+         Grid.solve($scope.gridData);
+       }, 1000);
      });
    };
 

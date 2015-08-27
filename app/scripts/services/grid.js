@@ -19,19 +19,121 @@
  app.services.factory('Grid', ['$http', '$log', '$q', 'Config', 'Request',
    function($http, $log, $q, Config, Request) {
 
-     return {
+     var Grid = {};
 
-       /**
-        * @method getDataArray
-        * requests remote API
-        * returns data
-        * @returns {Array}
-        */
-        getDataArray: function() {
-          return Request.internalHttpRequest(Config.RequestUrls.gridDataUrl, 'get');
-        }
-
+     Grid.getConnectedCount = function(grid){
+       var counter = 0;
+       for(var i=grid.length-1;i>=0;i--){
+         for(var j=grid[i].length-1;j>=0;j--){
+           if(grid[i][j].isLinked){
+             counter++;
+           }
+         }
+       }
+       return counter;
      };
 
+     Grid.pickBestColor = function(grid, colors){
+       var choice = null, weight = 0, gridClone=null, currentColor = grid[0][0];
+       for(var i = 0; i<colors.length; i++){
+         if(colors[i] == currentColor){
+           continue;
+         }
+         gridClone = angular.copy(grid);
+         this.flood(gridClone, colors[i]);
+         if(weight < this.getConnectedCount(gridClone)){
+           choice = colors[i];
+         }
+       }
+       return choice;
+     };
+
+     Grid.updateLinkedSquares = function (grid) {
+       var size = grid.length;
+       for (var i = 0; i < size; i ++) {
+         for (var j = 0; j < size; j ++) {
+           if (grid[i][j].isLinked) {
+             var color = grid[i][j].color;
+             var sq = null;
+
+             if (i > 0) {
+               sq = grid[i - 1][j];
+             }
+
+             if (i < (size - 1)) {
+               var down = grid[i + 1][j];
+             }
+
+             if (j > 0) {
+               var left = grid[i][j - 1];
+             }
+
+             if (j < (size - 1)) {
+               var right = grid[i][j + 1];
+             }
+
+             if(sq && sq.color == color) {
+               sq.isLinked = true;
+             }
+           }
+         }
+       }
+       return grid;
+     };
+
+     Grid.flood = function flood(grid, color) {
+       var size = grid.length;
+       if (grid[0][0].color == color)
+         return;
+
+       grid[0][0].color = color;
+
+       var queue = [];
+       for (var i = 0; i < size; i++) {
+         for (var j = 0; j < size; j++) {
+           if (grid[i][j].isLinked) {
+             grid[i][j].color = color;
+           }
+         }
+       }
+
+       return this.updateLinkedSquares(grid);
+     };
+
+     Grid.solved = function(grid) {
+       var size = grid.length;
+       var firstColor = grid[0][0].color;
+       for (var i = 0; i < size; i ++) {
+         for (var j = 0; j < size; j ++) {
+           if (grid[i][j].color != firstColor) {
+             return false;
+           }
+         }
+       }
+       return true;
+     };
+
+     /**
+      * @method getDataArray
+      * requests remote API
+      * returns data
+      * @returns {Array}
+      */
+     Grid.getDataArray = function() {
+       return Request.internalHttpRequest(Config.RequestUrls.gridDataUrl, 'get');
+     };
+
+     Grid.solve = function(grid){
+       var colors = Config.Colors, color = null, solution = [];
+       while(!this.solved(grid)){
+         color = this.pickBestColor(grid, colors);
+         grid = this.flood(grid, color);
+         solution.push(color);
+       }
+       return solution;
+     }
+
+
+     return Grid;
 
    }]);

@@ -19,6 +19,7 @@
 
    RequestUrls: {
      gridDataUrl: '/api/grid'
-   }
+   },
+   Colors: ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 
  });
