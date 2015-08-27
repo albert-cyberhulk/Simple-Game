@@ -10,7 +10,13 @@ app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log',
    function ($scope, $timeout, Request, $log, Grid) {
 
    $scope.gridData = [];
-   $scope.flood = Grid.flood;
+   $scope.flood = function() {
+     Grid.flood();
+   };
+
+   $scope.solve = function() {
+     Grid.solve($scope.gridData);
+   };
 
    /**
     * @method getGridData
@@ -23,10 +29,6 @@ app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log',
    $scope.processData = function() {
      $scope.getGridData().then(function(data) {
        $scope.gridData = data;
-       $timeout(function() {
-         //$scope.solution = Grid.solve($scope.gridData);
-         console.log($scope.solution);
-       }, 1000);
      });
    };
 
