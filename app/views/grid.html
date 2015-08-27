@@ -1,7 +1,7 @@
 <div id="gridDirectiveContainer">
 	<div id="gridCube">
 		<span data-ng-repeat="row in gridData track by $index">
-			<span data-ng-repeat="cell in row track by $index" ng-class="cell.color" ng-click="flood()"></span>
+			<span data-ng-repeat="cell in row track by $index" ng-class="cell.color" ng-click="flood(cell)"></span>
 		</span>
 	</div>
 	<div id="solutionContainer">Won: {{solution}}</div>
