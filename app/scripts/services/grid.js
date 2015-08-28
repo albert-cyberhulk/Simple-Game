@@ -51,32 +51,32 @@
      };
 
      Grid.updateLinkedSquares = function (grid) {
-        var size = grid.length;
-        for (var i = 0; i < size; i ++) {
-          for (var j = 0; j < size; j ++) {
-            if (grid[i][j].isLinked) {
-              var color = grid[i][j].color;
+       var size = grid.length;
+       for (var i = 0; i < size; i ++) {
+         for (var j = 0; j < size; j ++) {
+           if (grid[i][j].isLinked) {
+             var color = grid[i][j].color;
 
-              if (i > 0) {
-                grid[i - 1][j].isLinked = true;
-              }
+             if (i > 0 && grid[i - 1][j].color == color) {
+               grid[i - 1][j].isLinked = true;
+             }
 
-              if (i < (size - 1)) {
-                grid[i + 1][j].isLinked = true;
-              }
+             if (i < (size - 1) && grid[i + 1][j].color == color) {
+               grid[i + 1][j].isLinked = true;
+             }
 
-              if (j > 0) {
-                grid[i][j - 1].isLinked = true;
-              }
+             if (j > 0 && grid[i][j - 1].color == color) {
+               grid[i][j - 1].isLinked = true;
+             }
 
-              if (j < (size - 1)) {
-                grid[i][j + 1].isLinked = true;
-              }
-            }
-          }
-        }
-        return grid;
-      };
+             if (j < (size - 1) && grid[i][j + 1].color == color) {
+               grid[i][j + 1].isLinked = true;
+             }
+           }
+         }
+       }
+       return grid;
+     };
 
      Grid.flood = function flood(grid, color) {
        var size = grid.length;
@@ -121,16 +121,16 @@
      };
 
      Grid.solve = function(grid){
-        var colors = Config.Colors, color = null, solution = [];
-        grid[0][0].isLinked = true;
-        while(!this.solved(grid)){
-          color = this.pickBestColor(grid, colors);
-          grid = this.flood(grid, color);
-          console.log(color, grid);
-          solution.push(color);
-        }
-        return solution;
-      };
+       var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet'], color = null, solution = [];
+       grid[0][0].isLinked = true
+       while(!this.solved(grid)){
+         color = this.pickBestColor(grid, colors);
+         grid = this.flood(grid, color);
+         solution.push(color);
+       }
+       return solution;
+     };
+
 
      return Grid;
 
