@@ -4,5 +4,8 @@
 			<span data-ng-repeat="cell in row track by $index" ng-class="cell.color" ng-click="flood(cell)"></span>
 		</span>
 	</div>
-	<div id="solutionContainer">Won: {{solution}}</div>
+	<div id="solutionContainer">
+		<div>Color Selected: {{curColor}}</div>
+		Won: {{solution}}
+	</div>
 </div>

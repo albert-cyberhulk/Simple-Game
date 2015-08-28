@@ -10,8 +10,9 @@ app.controllers.controller('MainCtrl', ['$scope', '$timeout', 'Request', '$log',
    function ($scope, $timeout, Request, $log, Grid) {
 
    $scope.gridData = [];
-   $scope.flood = function() {
-     Grid.flood();
+   $scope.flood = function(curCell) {
+     $scope.curColor = curCell.color;
+     Grid.flood(curCell);
    };
 
    $scope.solve = function() {
