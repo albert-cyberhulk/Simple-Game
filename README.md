@@ -40,10 +40,4 @@ Run index.html of the dist folder from any webserver you wish, e.g Apache, Node 
 
 ===========
 
-Dist folder is about 4.6 MB from which 4.5 MB is bower-components helper bower
-
-files and libraries, which can in production should be replaced by Cloud CDN urls E.G Cloudinary
-
-===========
-
 To use the game simply launch it, and perform mouse click or press up arrow key
