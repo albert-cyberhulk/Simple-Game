@@ -24,10 +24,6 @@ whenever everything successfully complete, run "grunt serve" from CLI
 
 In your default browser you will see a new tab: "http://localhost:9000/#/"
 
-Application is running using actual XMLHTTPRequest layer with stubbed mock backend
-
-that intercepts and makes response to emulate more developer environment
-
 ===========
 
 In order to run the production version of app:
@@ -50,16 +46,4 @@ files and libraries, which can in production should be replaced by Cloud CDN url
 
 ===========
 
-Script images and styles files are minimized and cached, also automatic
-
-cache versioning is implemented in production version
-
-===========
-
-Tests:
-
-In order to run tests input "grunt test" command in CLI and you will see
-
-output in terminal with all existing tests
-
-Tests are being run automatically when grunt build is done for production version
+To use the game simply launch it, and perform mouse click or press up arrow key
