@@ -25,24 +25,21 @@ app.module = app.module || {};
  * @class AppServices
  * services module of the app
  */
-app.services = app.services || {};
-app.services = angular.module('AppServices', []);
+angular.module('app.services', []);
 
 /**
  * @namespace app.controllers
  * @class AppControllers
  * controllers module of the app
  */
-app.controllers = app.controllers || {};
-app.controllers = angular.module('AppControllers', []);
+angular.module('app.controllers', []);
 
 /**
  * @namespace app.directives
  * @class AppDirectives
  * directives module of the app
  */
-app.directives = app.directives || {};
-app.directives = angular.module('AppDirectives', []);
+angular.module('app.directives', []);
 
 /**
  * @class App
@@ -53,9 +50,9 @@ app.directives = angular.module('AppDirectives', []);
 app.module = angular.module('App', [
     'ngRoute',
     'ngMockE2E',
-    'AppServices',
-    'AppControllers',
-    'AppDirectives'
+    'app.services',
+    'app.controllers',
+    'app.directives'
   ])
   .config(function ($routeProvider) {
     //configuring application routes

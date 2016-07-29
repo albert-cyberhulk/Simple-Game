@@ -15,11 +15,7 @@
  * @param {Object} $log
  * @return {Object}
  */
- app.services.value('Config', {
+ angular.module('app.services').value('Config', {
 
-   RequestUrls: {
-     gridDataUrl: '/api/grid'
-   },
-   Colors: ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
 
  });
