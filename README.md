@@ -40,4 +40,5 @@ Run index.html of the dist folder from any webserver you wish, e.g Apache, Node 
 
 ===========
 
-To use the game simply launch it, and perform mouse click event on the stage
+To use the game simply launch it
+Use "W" for jump, "A" for back and "D" for forward movement
