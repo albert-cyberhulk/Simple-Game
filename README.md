@@ -40,5 +40,6 @@ Run index.html of the dist folder from any webserver you wish, e.g Apache, Node 
 
 ===========
 
-To use the game simply launch it
-Use "W" for jump, "A" for back and "D" for forward movement
+To use the game simply launch it,
+
+use "W" for jump, "A" for back and "D" for forward movement
