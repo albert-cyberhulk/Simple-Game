@@ -26,6 +26,8 @@ angular.module('app.directives')
       var ground;
       var hill;
       var hill2;
+	  var plrSpeed = 150;
+	  
       drawGame();
       // Creates canvas with loader and assets
       function drawGame() {
@@ -70,18 +72,20 @@ angular.module('app.directives')
         grant.y = 35;
         scope.stage.addChild(sky, hill, hill2, ground, grant);
         scope.stage.addEventListener("stagemousedown", handleJumpStart);
+		window.addEventListener("keypress", playerMovement);
         createjs.Ticker.timingMode = createjs.Ticker.RAF;
         createjs.Ticker.addEventListener("tick", tick);
+		
       }
       function handleJumpStart() {
         grant.gotoAndPlay("jump");
       }
       function tick(event) {
         var deltaS = event.delta / 1000;
-        var position = grant.x + 150 * deltaS;
+        var position = grant.x + plrSpeed * deltaS;
         var grantW = grant.getBounds().width * grant.scaleX;
         grant.x = (position >= w + grantW) ? -grantW : position;
-        ground.x = (ground.x - deltaS * 150) % ground.tileW;
+        ground.x = (ground.x - deltaS * plrSpeed) % ground.tileW;
         hill.x = (hill.x - deltaS * 30);
         if (hill.x + hill.image.width * hill.scaleX <= 0) {
           hill.x = w;
@@ -92,6 +96,44 @@ angular.module('app.directives')
         }
         scope.stage.update(event);
       }
-    }
+	 
+	 /// <summary>
+	 /// Handles player movement, jumping, accelerating and slow down
+	 /// Use acceleration and maxSpeed to adjust ingame
+	 /// </summary>
+	  function playerMovement(e){
+		  // init vars
+		  var _plrAcceleration = 10;
+		  var _maxSpeed = 500;
+		  
+		  //jumping / key up
+		  if(e.keyCode == 119){
+			  handleJumpStart();
+		  }
+		  
+		  // movement
+		  if(e.keyCode == 100){
+			  //plrSpeed += MathF.Clamp(plrSpeed + _plrAcceleration * Time.deltatime, 0, _maxSpeed);
+			  plrSpeed += _plrAcceleration;
+		  } 
+		  
+		  // key left
+		  else if (e.keyCode == 97){
+			  //plrSpeed -= MathF.Clamp(plrSpeed + _plrAcceleration * Time.deltatime, 0, _maxSpeed);
+			  plrSpeed -= _plrAcceleration;
+			  //if(plrSpeed )
+			  // total stand still
+			  /*
+			  if(plrSpeed < 0 ){
+				  plrSpeed = 0;
+				  grant.GetComponent<Animator>().Animation("idle");
+				  toggleLandscapeMovement(false);
+			  }
+			  */
+		  }
+		  
+	  };
+	  
+	}
   }
 }]);
